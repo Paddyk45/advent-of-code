@@ -14,7 +14,7 @@ fn main() {
     let mut sum = 0;
     for ln in lines_stripped {
         if ln.len() == 1 {
-            sum += ln.parse::<i32>().unwrap()*11;
+            sum += ln.parse::<i32>().unwrap() * 11;
             continue;
         }
         let c1 = ln.chars().next().unwrap();

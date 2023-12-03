@@ -16,28 +16,32 @@ fn main() {
 
         let parts = l.split("; ").map(|p| {
             let color_parts = p.split(", ");
-            let c: Vec<(i32, &str)> = color_parts.map(|p| {
-                let s = p.split_once(" ").unwrap();
-                (s.0.parse().unwrap(), s.1)
-            }).collect();
+            let c: Vec<(i32, &str)> = color_parts
+                .map(|p| {
+                    let s = p.split_once(" ").unwrap();
+                    (s.0.parse().unwrap(), s.1)
+                })
+                .collect();
             c
         });
 
-        let is_impossible = parts.map(|f| {
-            let mut is_possible = true;
-            for color in f {
-                let possible = match color.1 {
-                    "red" => color.0 <= max_red,
-                    "green" => color.0 <= max_green,
-                    "blue" => color.0 <= max_blue,
-                    _ => unreachable!()
-                };
-                if !dbg!(possible) {
-                    is_possible = false;
+        let is_impossible = parts
+            .map(|f| {
+                let mut is_possible = true;
+                for color in f {
+                    let possible = match color.1 {
+                        "red" => color.0 <= max_red,
+                        "green" => color.0 <= max_green,
+                        "blue" => color.0 <= max_blue,
+                        _ => unreachable!(),
+                    };
+                    if !dbg!(possible) {
+                        is_possible = false;
+                    }
                 }
-            };
-            is_possible
-        }).any(|c| !c);
+                is_possible
+            })
+            .any(|c| !c);
 
         if !is_impossible {
             possible_games.push(game_id.parse().unwrap());

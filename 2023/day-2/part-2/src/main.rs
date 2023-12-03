@@ -10,29 +10,37 @@ fn main() {
 
         let parts = l.split("; ").map(|p| {
             let color_parts = p.split(", ");
-            let c: Vec<(i32, &str)> = color_parts.map(|p| {
-                let s = p.split_once(" ").unwrap();
-                (s.0.parse().unwrap(), s.1)
-            }).collect();
+            let c: Vec<(i32, &str)> = color_parts
+                .map(|p| {
+                    let s = p.split_once(" ").unwrap();
+                    (s.0.parse().unwrap(), s.1)
+                })
+                .collect();
             c
         });
 
         let (r_min, g_min, b_min) = {
             let mut rgbm = (0, 0, 0);
-            parts.for_each(|c| c.iter().for_each(|col| {
-                match col.1 {
-                    "red" => if col.0 > rgbm.0 {
-                        rgbm.0 = col.0
+            parts.for_each(|c| {
+                c.iter().for_each(|col| match col.1 {
+                    "red" => {
+                        if col.0 > rgbm.0 {
+                            rgbm.0 = col.0
+                        }
                     }
-                    "green" => if col.0 > rgbm.1 {
-                        rgbm.1 = col.0
+                    "green" => {
+                        if col.0 > rgbm.1 {
+                            rgbm.1 = col.0
+                        }
                     }
-                    "blue" => if col.0 > rgbm.2 {
-                        rgbm.2 = col.0
+                    "blue" => {
+                        if col.0 > rgbm.2 {
+                            rgbm.2 = col.0
+                        }
                     }
-                    _ => unreachable!()
-                }
-            }));
+                    _ => unreachable!(),
+                })
+            });
             rgbm
         };
         powers.push(r_min * g_min * b_min);

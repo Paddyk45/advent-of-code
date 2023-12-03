@@ -29,14 +29,13 @@ impl Gear {
         dbg!(self);
         //let chars: Vec<Vec<char>> = get_file().lines().map(|l| l.chars().collect()).collect();
         let mut nums: Vec<Number> = vec![];
-        for l in self.line-1..=self.line+1 {
-            for c in self.pos..self.pos+2 {
+        for l in self.line - 1..=self.line + 1 {
+            for c in self.pos..self.pos + 2 {
                 if let Some(n) = try_get_number(l, c, numbers) {
                     nums.push(n.clone());
                 }
             }
         }
-
 
         nums.dedup_by(|x, y| x == y);
         nums
@@ -72,10 +71,7 @@ fn main() {
                 number_tmp = (String::new(), 0);
             }
             if c == '*' {
-                gears.push(Gear {
-                    line: l_idx,
-                    pos,
-                })
+                gears.push(Gear { line: l_idx, pos })
             }
         }
         if number_tmp.1 != 0 {

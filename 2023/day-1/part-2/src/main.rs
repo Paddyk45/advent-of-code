@@ -6,7 +6,8 @@ fn main() {
         let mut s = String::new();
         for c in l.chars() {
             s.push(c);
-            let repl_s = s.replace("one", "1")
+            let repl_s = s
+                .replace("one", "1")
                 .replace("two", "2")
                 .replace("three", "3")
                 .replace("four", "4")
@@ -17,13 +18,14 @@ fn main() {
                 .replace("nine", "9");
             if repl_s != s {
                 s = repl_s;
-                break
+                break;
             }
         }
         let mut sr = String::new();
         for c in l.chars().rev() {
             sr = format!("{c}{sr}");
-            let repl_sr = sr.replace("one", "1")
+            let repl_sr = sr
+                .replace("one", "1")
                 .replace("two", "2")
                 .replace("three", "3")
                 .replace("four", "4")
@@ -34,7 +36,7 @@ fn main() {
                 .replace("nine", "9");
             if repl_sr != sr {
                 sr = repl_sr;
-                break
+                break;
             }
         }
         s.push_str(&sr);
@@ -49,7 +51,7 @@ fn main() {
     let mut sum = 0;
     for ln in lines_stripped {
         if ln.len() == 1 {
-            sum += ln.parse::<i32>().unwrap()*11;
+            sum += ln.parse::<i32>().unwrap() * 11;
             continue;
         }
         let c1 = ln.chars().next().unwrap();
