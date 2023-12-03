@@ -15,10 +15,9 @@ struct Gear {
 }
 
 fn try_get_number(line: usize, column: usize, numbers: &Vec<Number>) -> Option<&Number> {
-    println!("Tried to get: {}:{}", line, column);
     for n in numbers.into_iter().filter(|n| n.line == line) {
         if n.start <= column && n.end >= column {
-            return dbg!(Some(n));
+            return Some(n);
         }
     }
     None
@@ -26,7 +25,6 @@ fn try_get_number(line: usize, column: usize, numbers: &Vec<Number>) -> Option<&
 
 impl Gear {
     pub fn get_adj_numbers<'a>(&self, numbers: &Vec<Number>) -> Vec<Number> {
-        dbg!(self);
         //let chars: Vec<Vec<char>> = get_file().lines().map(|l| l.chars().collect()).collect();
         let mut nums: Vec<Number> = vec![];
         for l in self.line - 1..=self.line + 1 {
