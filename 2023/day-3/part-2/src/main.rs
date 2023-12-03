@@ -90,5 +90,6 @@ fn main() {
         None
     });
 
-    dbg!(ratios.fold(0, |sum, r| sum + r));
+    let sum = ratios.fold(0, |sum, r| sum + r);
+    dbg!(sum);
 }
