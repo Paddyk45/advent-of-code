@@ -35,7 +35,7 @@ fn main() {
                         "blue" => color.0 <= max_blue,
                         _ => unreachable!(),
                     };
-                    if !dbg!(possible) {
+                    if possible {
                         is_possible = false;
                     }
                 }
@@ -47,7 +47,6 @@ fn main() {
             possible_games.push(game_id.parse().unwrap());
         }
     }
-    dbg!(possible_games.clone());
     let possible_games_sum: i32 = possible_games.into_iter().sum();
     dbg!(possible_games_sum);
 }
