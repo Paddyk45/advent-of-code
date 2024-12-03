@@ -7,7 +7,7 @@ fn main() {
     let re = Regex::new("(mul\\((\\d+),(\\d+)\\)|do\\(\\)|don't\\(\\)|)").unwrap();
     let (_, sum) = re
         .captures_iter(&file)
-        .fold((true, 0), |(mut en, mut acc), cap| {
+        .fold((true, 0), |(en, acc), cap| {
             if &cap[0] == "do()" {
                 (true, acc)
             } else if &cap[0] == "don't()" {
