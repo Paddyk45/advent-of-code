@@ -73,7 +73,7 @@ fn main() {
     for x in 0..height {
         for y in 0..width {
             let mut map = map.clone();
-            let mut player_pos = pos.clone();
+            let mut pos = pos.clone();
             let mut rot = rot.clone();
             if map[x][y] == MapChar::Obstacle {
                 continue;
@@ -84,8 +84,8 @@ fn main() {
 
             for _ in 0..100000 { // break after at most a gazillion steps (mm yes very fast)
                 let movm = rot.get_movement();
-                let np0 = player_pos.0 + movm.0;
-                let np1 = player_pos.1 + movm.1;
+                let np0 = pos.0 + movm.0;
+                let np1 = pos.1 + movm.1;
                 if np0 < 0 || np0 > (width - 1) as i32 || np1 < 0 || np1 > (height - 1) as i32 {
                     did_finish = true;
                     break;
@@ -95,8 +95,8 @@ fn main() {
                     continue;
                 }
 
-                player_pos.0 += rot.get_movement().0;
-                player_pos.1 += rot.get_movement().1;
+                pos.0 += rot.get_movement().0;
+                pos.1 += rot.get_movement().1;
             }
 
             if !did_finish {
