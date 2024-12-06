@@ -3,18 +3,22 @@ use std::fs;
 fn check(orders: &Vec<(u8, u8)>, pages: &Vec<u8>) -> Option<(usize, usize)> {
     for (i, n) in pages.iter().enumerate() {
         for rule in orders.iter().filter(|r| &r.1 == n) {
-            if let Some(i2) = pages.iter().enumerate().skip(i).find_map(|(i, o)| {
-                if o == &rule.0 {
-                    Some(i)
-                } else {
-                    None
-                }
-            }) {
-                return Some((i, i2))
+            if let Some(i2) =
+                pages.iter().enumerate().skip(i).find_map(
+                    |(i, o)| {
+                        if o == &rule.0 {
+                            Some(i)
+                        } else {
+                            None
+                        }
+                    },
+                )
+            {
+                return Some((i, i2));
             }
         }
     }
-    
+
     None
 }
 
@@ -57,7 +61,7 @@ fn main() {
             println!("skipping {ps:?}");
             continue;
         }
-        
+
         println!("doin {ps:?}");
         while let Some((p1, p2)) = check(&orders, &ps) {
             ps.swap(p1, p2)
