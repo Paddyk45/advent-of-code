@@ -37,8 +37,10 @@ fn main() {
                 let op = bits & 3u32 << n * 2;
                 if op == 0 {
                     operators.push(Operator::Add);
-                } else if op >> n * 2 <= 2 {
+                } else if op >> n * 2 == 1 {
                     operators.push(Operator::Mul);
+                } else if op >> n * 2 == 2 {
+                    continue 'lo;
                 } else {
                     operators.push(Operator::Concat);
                 }
