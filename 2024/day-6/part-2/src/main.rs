@@ -95,8 +95,8 @@ fn main() {
                     continue;
                 }
 
-                pos.0 += rot.get_movement().0;
-                pos.1 += rot.get_movement().1;
+                pos.0 = np0;
+                pos.1 = np1;
             }
 
             if !did_finish {
